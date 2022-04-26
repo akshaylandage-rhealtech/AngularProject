@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from './books.service'
-import { NormalData, Todo } from 'src/app/Todo';
+
 import { BookModel } from './BookModel';
 
 @Component({
@@ -12,7 +12,6 @@ import { BookModel } from './BookModel';
 export class BooksComponent implements OnInit {
 
   title: string = "Angular session"
-  todos:Todo[] = Array()
   BookName:string
   BookId:number
   BookCategoryId:number
