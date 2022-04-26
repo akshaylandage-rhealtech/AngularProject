@@ -1,1 +1,76 @@
-<p>books works!</p>
+<form>
+  <!-- <h1>{{flag}}</h1> -->
+  <h1 class="my-5" style="width: 100%;text-align: center;">Book List</h1>
+  <div class="container my-3">
+    <div class="row child-row">
+      <div class="col-3">
+        <input type="text" placeholder="Book Name" name="Book" class="form-control" [(ngModel)]="book.BookName">
+      </div>
+      <div class="col-3">
+
+        <select [(ngModel)]="book.BookCategoryId" class="form-control" name="BookCategory">
+          <option value="undefined" selected>Select Category</option>
+          <option *ngFor="let item of BookCategoryList" [ngValue]="item.BookCategoryId">
+            {{item.BookCategory}}
+          </option>
+        </select>
+      </div>
+      <div class="col-3">
+        <select [(ngModel)]="book.BookPublisherId" class="form-control" name="BookPublisher">
+          <option value="undefined" selected>Select Publisher</option>
+          <option *ngFor="let item of BookPublisherList" [ngValue]="item.BookPublisherId">
+            {{item.BookPublisher}}
+          </option>
+        </select>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-primary submit" (click)="setData()" style="width: 100%;">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="container">
+  <div class="inner">
+    <table mat-table [dataSource]="BookList" class="mat-elevation-z8">
+      <ng-container matColumnDef="BookId">
+        <th mat-header-cell *matHeaderCellDef> BookId </th>
+        <td mat-cell *matCellDef="let element"> {{element.BookId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="BookName">
+        <th mat-header-cell *matHeaderCellDef> BookName </th>
+        <td mat-cell *matCellDef="let element"> {{element.BookName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="BookCategoryName">
+        <th mat-header-cell *matHeaderCellDef> BookCategory </th>
+        <td mat-cell *matCellDef="let element"> {{element.BookCategoryName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="BookPublisherName">
+        <th mat-header-cell *matHeaderCellDef> BookPublisher </th>
+        <td mat-cell *matCellDef="let element"> {{element.BookPublisherName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="BookQuantity">
+        <th mat-header-cell *matHeaderCellDef> Book Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.BookQuantity}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <p>Restricted size with rotation and no ellipses:</p>
+    <!-- <ngb-pagination [collectionSize]="120" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false"
+      [boundaryLinks]="true"></ngb-pagination>
+
+    <hr>
+
+    <pre>Current page: {{page}}</pre> -->
+  </div>
+
+</div>
+
+
+
+<router-outlet></router-outlet>
