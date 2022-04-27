@@ -29,4 +29,9 @@ export class BooksService {
         return this.http.post(this.baseUrl + 'BooksGetList1', BookModel);
         
     }
+    LoadData(elementId: any) {
+        debugger;
+        return this.http.post(this.baseUrl + 'Load', elementId);
+        
+    }
 }

@@ -3,6 +3,7 @@ import { BooksService } from './books.service'
 
 import { BookModel } from './BookModel';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'books-list',
@@ -26,9 +27,9 @@ export class BooksComponent implements OnInit {
   selectedLevel:number
   book:BookModel=new BookModel()
   private modalService: NgbModal
-  displayedColumns: string[] = ['BookId', 'BookName', 'BookCategoryName', 'BookPublisherName','BookQuantity'];
+  displayedColumns: string[] = ['BookId', 'BookName', 'BookCategoryName', 'BookPublisherName','BookQuantity','actions'];
   
-  constructor(public BooksService: BooksService) {
+  constructor(public BooksService: BooksService,public Router:Router) {
 
   }
 
@@ -49,6 +50,9 @@ export class BooksComponent implements OnInit {
         this.BookList = data.list;
         this.book.TotalPages=data.booksModel.TotalPages
       });
+  }
+  insertBtn(elementId:any){
+    this.Router.navigate(['/insert',elementId])
   }
 
 }
