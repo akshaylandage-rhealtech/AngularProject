@@ -6,7 +6,7 @@
       <div class="col-3">
         <input type="text" placeholder="Book Name" name="Book" class="form-control" [(ngModel)]="book.BookName">
       </div>
-      <div class="col-3">
+      <div class="col-2">
 
         <select [(ngModel)]="book.BookCategoryId" class="form-control" name="BookCategory">
           <option value="undefined" selected>Select Category</option>
@@ -15,7 +15,7 @@
           </option>
         </select>
       </div>
-      <div class="col-3">
+      <div class="col-2">
         <select [(ngModel)]="book.BookPublisherId" class="form-control" name="BookPublisher">
           <option value="undefined" selected>Select Publisher</option>
           <option *ngFor="let item of BookPublisherList" [ngValue]="item.BookPublisherId">
@@ -24,19 +24,21 @@
         </select>
       </div>
       
-      <div class="col-2">
+      <div class="col-3">
         <button class="btn btn-primary submit" (click)="setData()" style="width: 100%;">Submit</button>
       </div>
-      <div class="col-1">
-        <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize">
-          <option value="10" selected>10</option>
-          <option value="5" selected>5</option>
-          <option value="3" selected>3</option>
+      <div class="col-2">
+        <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize" (ngModelChange)="setData()" >
+          <option value="10" selected>10 item per page</option>
+          <option value="5" selected>5 item per page</option>
+          <option value="3" selected>3 item per page</option>
         </select>
       </div>
     </div>
   </div>
 </form>
+
+
 
 <div class="container">
   <div class="inner">
@@ -72,12 +74,8 @@
     <div class="pagingDiv">
       <ngb-pagination [collectionSize]="book.TotalPages*10" [(page)]="book.PageNumber" [maxSize]="5" [rotate]="true" [ellipses]="false" (pageChange)="setData()"
       [boundaryLinks]="true"></ngb-pagination>
-    </div>
-    
+    </div> 
   </div>
-
 </div>
-
-
 
 <router-outlet></router-outlet>

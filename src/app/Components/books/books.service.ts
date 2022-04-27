@@ -24,9 +24,6 @@ export class BooksService {
     //     return this.http.get(this.baseUrl + 'BooksGetList?bookid=' + id +"&name=" +name);
     // }
 
-    
-    
-
     BookGetList(BookModel: any) {
         debugger;
         return this.http.post(this.baseUrl + 'BooksGetList1', BookModel);

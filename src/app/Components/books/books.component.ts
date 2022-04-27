@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BooksService } from './books.service'
 
 import { BookModel } from './BookModel';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'books-list',
@@ -24,6 +25,7 @@ export class BooksComponent implements OnInit {
   BookPublisherList:any
   selectedLevel:number
   book:BookModel=new BookModel()
+  private modalService: NgbModal
   displayedColumns: string[] = ['BookId', 'BookName', 'BookCategoryName', 'BookPublisherName','BookQuantity'];
   
   constructor(public BooksService: BooksService) {

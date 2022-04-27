@@ -4,7 +4,8 @@ table {
 }
 .pagingDiv {
   width: 100%;
-  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 .inner {  
     margin: 0 auto;
