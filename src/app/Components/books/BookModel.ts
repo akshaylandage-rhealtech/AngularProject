@@ -8,4 +8,5 @@ export class BookModel{
     BookQuantity:number
     PageLength:number=10
     PageNumber:number=1
+    TotalPages:number
 }

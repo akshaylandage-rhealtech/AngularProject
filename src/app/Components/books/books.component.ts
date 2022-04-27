@@ -42,10 +42,10 @@ export class BooksComponent implements OnInit {
     
   }
   setData() {
-
       this.BooksService.BookGetList(this.book).subscribe((data: any) => {
         debugger;
-        this.BookList = data;
+        this.BookList = data.list;
+        this.book.TotalPages=data.booksModel.TotalPages
       });
   }
 

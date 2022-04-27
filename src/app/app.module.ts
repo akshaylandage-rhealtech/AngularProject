@@ -17,6 +17,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { BooksService } from './Components/books/books.service';
 import { BooksComponent } from './Components/books/books.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { BooksComponent } from './Components/books/books.component';
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
+    NgbModule,
     
   ],
   providers: [

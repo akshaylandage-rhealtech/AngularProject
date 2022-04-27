@@ -60,13 +60,12 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <p>Restricted size with rotation and no ellipses:</p>
-    <!-- <ngb-pagination [collectionSize]="120" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false"
+    <br>
+    <div class="pagingDiv">
+      <ngb-pagination [collectionSize]="book.TotalPages*10" [(page)]="book.PageNumber" [maxSize]="5" [rotate]="true" [ellipses]="false" (pageChange)="setData()"
       [boundaryLinks]="true"></ngb-pagination>
-
-    <hr>
-
-    <pre>Current page: {{page}}</pre> -->
+    </div>
+    
   </div>
 
 </div>
