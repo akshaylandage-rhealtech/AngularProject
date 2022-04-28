@@ -54,11 +54,11 @@ export class BooksComponent implements OnInit {
   insertBtn(){
     this.Router.navigate(['/insert'],{queryParams:{BookId:0,pageType:"Insert"}})
   }
-  editBtn(BookId:any,BookName:any,BookCategoryId:any,BookPublisherId:any,BookQuantity:any,BookPublisherList:any){
-    this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,BookName:BookName,BookCategoryId:BookCategoryId,BookPublisherId:BookPublisherId,BookQuantity:BookQuantity,BookPublisherList:BookPublisherList,pageType:"Edit"}})
+  editBtn(BookId:any){
+    this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Edit"}})
   }
-  deleteBtn(BookId:any,BookName:any,BookCategoryId:any,BookPublisherId:any,BookQuantity:any,BookPublisherList:any){
-    this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,BookName:BookName,BookCategoryId:BookCategoryId,BookPublisherId:BookPublisherId,BookQuantity:BookQuantity,BookPublisherList:BookPublisherList,pageType:"Delete"}})
+  deleteBtn(BookId:any){
+    this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Delete"}})
   }
 
 

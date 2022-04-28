@@ -25,5 +25,16 @@ export class BooksService {
         return this.http.post(this.baseUrl + 'BooksGetList1', BookModel);
         
     }
+    LoadBook(BookId:any){
+        debugger;
+        return this.http.get(this.baseUrl + 'LoadBookDetails?ID='+BookId);
+    }
+    InsertEditBook(bookModel:any){
+        debugger;
+        return this.http.post(this.baseUrl + 'InsertEdit',bookModel);
+    }
+    DeleteBook(BookId:any){
+        return this.http.get(this.baseUrl + 'DeleteBook?ID='+BookId);
+    }
     
 }

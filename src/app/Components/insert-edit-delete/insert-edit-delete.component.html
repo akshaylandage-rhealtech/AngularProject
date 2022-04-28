@@ -1,5 +1,4 @@
 <div class="container" style="display: flex;justify-content: center;">
-
     <div style="margin-top: 20px;">
         <p style="width: 100%;font-weight: bold;font-size: xx-large;text-align: center;">{{pageType}} Book</p>
         <div class="row child-row" style="margin-top: 20px;">
@@ -7,7 +6,8 @@
                 Book name
             </div>
             <div class="col-6">
-                <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Name" name="Book" class="form-control" [(ngModel)]="book.BookName">
+                <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Name"
+                    name="Book" class="form-control" [(ngModel)]="book.BookName">
             </div>
         </div>
         <div class="row child-row" style="margin-top: 20px;">
@@ -15,8 +15,11 @@
                 Book Category
             </div>
             <div class="col-6">
-                <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Category" name="Book" class="form-control"
-                    [(ngModel)]="book.BookCategoryId">
+                <select [(ngModel)]="book.BookCategoryId" [attr.disabled]="pageType=='Delete' ? false : null" class="form-control" name="BookCategory">
+                    <option *ngFor="let item of BookCategoryList" [ngValue]="item.BookCategoryId" [selected]="item.BookCategoryId == book.BookCategoryId">
+                      {{item.BookCategory}}
+                    </option>
+                  </select>
             </div>
         </div>
         <div class="row child-row" style="margin-top: 20px;">
@@ -24,8 +27,12 @@
                 Book Publisher
             </div>
             <div class="col-6">
-                <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Publisher" name="Book" class="form-control"
-                    [(ngModel)]="book.BookPublisherId">
+                <select [(ngModel)]="book.BookPublisherId" [attr.disabled]="pageType=='Delete' ? false : null" class="form-control" name="BookPublisher">
+                    
+                    <option *ngFor="let item of BookPublisherList" [ngValue]="item.BookPublisherId">
+                      {{item.BookPublisher}}
+                    </option>
+                  </select>
             </div>
         </div>
         <div class="row child-row" style="margin-top: 20px;">
@@ -33,8 +40,8 @@
                 Book Quantity
             </div>
             <div class="col-6">
-                <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Quantity" name="Book" class="form-control"
-                    [(ngModel)]="book.BookQuantity">
+                <input type="number" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Quantity"
+                    name="Book" class="form-control" [(ngModel)]="book.BookQuantity">
             </div>
         </div>
         <div class="row child-row" style="margin-top: 20px;">
@@ -42,9 +49,9 @@
                 <button class="btn btn-primary submit" style="width: 100%;">Cancel</button>
             </div>
             <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
-                <button class="btn btn-primary submit" style="width: 100%;">{{pageType}}</button>
+                <button (click)="InsertEditDelete()" class="btn btn-primary submit" style="width: 100%;">{{pageType}}</button>
             </div>
         </div>
-
     </div>
+    
 </div>

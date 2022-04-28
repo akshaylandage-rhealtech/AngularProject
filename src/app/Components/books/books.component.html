@@ -1,6 +1,6 @@
 <form>
   <!-- <h1>{{flag}}</h1> -->
-  <h1 class="my-5" style="width: 100%;text-align: center;">Book List</h1>
+  <h1 class="my-1" style="width: 100%;text-align: center;">Book List</h1>
   <div class="container my-3">
     <div class="row child-row">
       <div class="col-3">
@@ -78,10 +78,10 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell  *matHeaderCellDef ></mat-header-cell>
         <mat-cell *matCellDef="let element" >
-          <a (click)="editBtn(element.BookId,element.BookName,element.BookCategoryId,element.BookPublisherId,element.BookQuantity,BookPublisherList)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
+          <a (click)="editBtn(element.BookId)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
             Edit
           </a>
-          <a (click)="deleteBtn(element.BookId,element.BookName,element.BookCategoryId,element.BookPublisherId,element.BookQuantity,BookPublisherList)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
+          <a (click)="deleteBtn(element.BookId)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
             Delete
           </a>
         </mat-cell>
