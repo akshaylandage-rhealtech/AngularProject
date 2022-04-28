@@ -40,7 +40,7 @@
       <div class="col-2"></div>
       <div class="col-3"></div>
       <div class="col-2">
-        <a href="http://localhost:4200/insert" class="btn btn-primary submit" style="width: 100%;">
+        <a (click)="insertBtn()" class="btn btn-primary submit" style="width: 100%;">
           Insert Book
         </a>
         
@@ -78,10 +78,10 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell  *matHeaderCellDef ></mat-header-cell>
         <mat-cell *matCellDef="let element" >
-          <a (click)="insertBtn(element.BookId)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
+          <a (click)="editBtn(element.BookId,element.BookName,element.BookCategoryId,element.BookPublisherId,element.BookQuantity,BookPublisherList)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
             Edit
           </a>
-          <a href="http://localhost:4200/insert" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
+          <a (click)="deleteBtn(element.BookId,element.BookName,element.BookCategoryId,element.BookPublisherId,element.BookQuantity,BookPublisherList)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
             Delete
           </a>
         </mat-cell>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BookModel } from '../books/BookModel';
 import { BooksService } from '../books/books.service';
 
 @Component({
@@ -9,25 +10,37 @@ import { BooksService } from '../books/books.service';
 })
 export class InsertEditDeleteComponent implements OnInit {
 
-  elementId:any
+  BookId:any
+  BookName:any
+  BookCategoryId:any
+  BookPublisherId:any
+  BookQuantity:any
+  pageType:any
+  PageLength:number
+  PageNumber: number
+  BookList:any
+  BookCategoryList:any
+  BookPublisherList:any
+  selectedLevel:number
+  book:BookModel=new BookModel()
   constructor(private route: ActivatedRoute,public BookService:BooksService) {
-    debugger;
-    this.abcd();
    }
 
   ngOnInit(): void {
-    debugger;
-    this.elementId=this.route.snapshot.paramMap.get('elementId')
-    
+    // debugger;
+    // this.elementId=this.route.snapshot.paramMap.get('elementId')
+    this.route.queryParams.subscribe((params:any)=>{
+      console.log(params)
+      this.book.BookId=params.BookId
+      this.book.BookName=params.BookName
+      this.book.BookCategoryId=params.BookCategoryId
+      this.book.BookPublisherId=params.BookPublisherId
+      this.book.BookQuantity=params.BookQuantity
+      this.BookCategoryList=params.BookCategoryList
+      
+      this.pageType=params.pageType
+    })
+
   }
   
-
-  abcd(){
-    debugger;
-    this.BookService.LoadData(this.elementId).subscribe((data:any)=>{
-      debugger;
-      alert(data.BookName)
-    })
-  }
-
 }

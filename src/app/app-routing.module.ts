@@ -5,7 +5,7 @@ import { InsertEditDeleteComponent } from './Components/insert-edit-delete/inser
 
 const routes: Routes = [
   { path: 'booklist', component: BooksComponent },
-  { path: 'insert/:elementId', component: InsertEditDeleteComponent },
+  { path: 'insert', component: InsertEditDeleteComponent },
   { path: 'edit', component: InsertEditDeleteComponent },
   { path: 'delete', component: InsertEditDeleteComponent }
 ];

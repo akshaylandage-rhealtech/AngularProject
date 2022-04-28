@@ -51,9 +51,17 @@ export class BooksComponent implements OnInit {
         this.book.TotalPages=data.booksModel.TotalPages
       });
   }
-  insertBtn(elementId:any){
-    this.Router.navigate(['/insert',elementId])
+  insertBtn(){
+    this.Router.navigate(['/insert'],{queryParams:{BookId:0,pageType:"Insert"}})
   }
+  editBtn(BookId:any,BookName:any,BookCategoryId:any,BookPublisherId:any,BookQuantity:any,BookPublisherList:any){
+    this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,BookName:BookName,BookCategoryId:BookCategoryId,BookPublisherId:BookPublisherId,BookQuantity:BookQuantity,BookPublisherList:BookPublisherList,pageType:"Edit"}})
+  }
+  deleteBtn(BookId:any,BookName:any,BookCategoryId:any,BookPublisherId:any,BookQuantity:any,BookPublisherList:any){
+    this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,BookName:BookName,BookCategoryId:BookCategoryId,BookPublisherId:BookPublisherId,BookQuantity:BookQuantity,BookPublisherList:BookPublisherList,pageType:"Delete"}})
+  }
+
+
 
 }
 

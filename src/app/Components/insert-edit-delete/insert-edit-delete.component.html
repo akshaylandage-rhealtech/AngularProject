@@ -1,1 +1,50 @@
-<p>insert-edit-delete works!</p>
+<div class="container" style="display: flex;justify-content: center;">
+
+    <div style="margin-top: 20px;">
+        <p style="width: 100%;font-weight: bold;font-size: xx-large;text-align: center;">{{pageType}} Book</p>
+        <div class="row child-row" style="margin-top: 20px;">
+            <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
+                Book name
+            </div>
+            <div class="col-6">
+                <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Name" name="Book" class="form-control" [(ngModel)]="book.BookName">
+            </div>
+        </div>
+        <div class="row child-row" style="margin-top: 20px;">
+            <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
+                Book Category
+            </div>
+            <div class="col-6">
+                <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Category" name="Book" class="form-control"
+                    [(ngModel)]="book.BookCategoryId">
+            </div>
+        </div>
+        <div class="row child-row" style="margin-top: 20px;">
+            <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
+                Book Publisher
+            </div>
+            <div class="col-6">
+                <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Publisher" name="Book" class="form-control"
+                    [(ngModel)]="book.BookPublisherId">
+            </div>
+        </div>
+        <div class="row child-row" style="margin-top: 20px;">
+            <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
+                Book Quantity
+            </div>
+            <div class="col-6">
+                <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Quantity" name="Book" class="form-control"
+                    [(ngModel)]="book.BookQuantity">
+            </div>
+        </div>
+        <div class="row child-row" style="margin-top: 20px;">
+            <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
+                <button class="btn btn-primary submit" style="width: 100%;">Cancel</button>
+            </div>
+            <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
+                <button class="btn btn-primary submit" style="width: 100%;">{{pageType}}</button>
+            </div>
+        </div>
+
+    </div>
+</div>
