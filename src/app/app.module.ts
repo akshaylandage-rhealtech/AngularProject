@@ -19,6 +19,8 @@ import { BooksService } from './Components/books/books.service';
 import { BooksComponent } from './Components/books/books.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InsertEditDeleteComponent } from './Components/insert-edit-delete/insert-edit-delete.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,16 @@ import { InsertEditDeleteComponent } from './Components/insert-edit-delete/inser
     MatTableModule,
     MatPaginatorModule,
     NgbModule,
+    MatDialogModule,
+    BrowserAnimationsModule
     
   ],
   providers: [
     BooksService
+
+  ],
+  entryComponents:[
+    InsertEditDeleteComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,8 @@ import { BooksService } from './books.service'
 import { BookModel } from './BookModel';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { InsertEditDeleteComponent } from '../insert-edit-delete/insert-edit-delete.component';
 
 
 @Component({
@@ -30,7 +32,7 @@ export class BooksComponent implements OnInit {
   private modalService: NgbModal
   displayedColumns: string[] = ['BookId', 'BookName', 'BookCategoryName', 'BookPublisherName','BookQuantity','actions'];
   
-  constructor(public BooksService: BooksService,public Router:Router) {
+  constructor(public BooksService: BooksService,public Router:Router,public matDialogModule:MatDialog) {
 
   }
 
@@ -55,14 +57,31 @@ export class BooksComponent implements OnInit {
       });
   }
   insertBtn(){
-    this.Router.navigate(['/insert'],{queryParams:{BookId:0,pageType:"Insert"}})
-    
+    // this.Router.navigate(['/insert'],{queryParams:{BookId:0,pageType:"Insert"}})
+    const check=this.matDialogModule.open(InsertEditDeleteComponent,{
+      data:{BookId:0,pageType:"Insert"}
+    })
+    check.afterClosed().subscribe(result => {
+      this.setData()
+    });
   }
   editBtn(BookId:any){
-    this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Edit"}})
+    const check=this.matDialogModule.open(InsertEditDeleteComponent,{
+      data:{BookId:BookId,pageType:"Edit"}
+    })
+    check.afterClosed().subscribe(result => {
+      this.setData()
+    });
+    // this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Edit"}})
   }
   deleteBtn(BookId:any){
-    this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Delete"}})
+    const check=this.matDialogModule.open(InsertEditDeleteComponent,{
+      data:{BookId:BookId,pageType:"Delete"}
+    })
+    check.afterClosed().subscribe(result => {
+      this.setData()
+    });
+    // this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Delete"}})
   }
 
 }
