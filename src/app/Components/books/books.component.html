@@ -91,7 +91,8 @@
     </table>
     <br>
     <div class="pagingDiv">
-      <ngb-pagination [collectionSize]="book.TotalPages*10" [(page)]="book.PageNumber" [maxSize]="5" [rotate]="true" [ellipses]="false" (pageChange)="setData()"
+      <ngb-pagination [collectionSize]="book.TotalPages*10" [(page)]="book.PageNumber" 
+      [maxSize]="5" [rotate]="true" [ellipses]="false" (pageChange)="setData()"
       [boundaryLinks]="true"></ngb-pagination>
     </div> 
   </div>

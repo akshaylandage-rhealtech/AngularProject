@@ -5,6 +5,7 @@ import { BookModel } from './BookModel';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'books-list',
   templateUrl: './books.component.html',
@@ -47,12 +48,15 @@ export class BooksComponent implements OnInit {
   setData() {
       this.BooksService.BookGetList(this.book).subscribe((data: any) => {
         debugger;
-        this.BookList = data.list;
+        this.BookList = data.list
         this.book.TotalPages=data.booksModel.TotalPages
+        this.book.TotalCount=data.booksModel.TotalCount
+        // alert(this.book.TotalCount)
       });
   }
   insertBtn(){
     this.Router.navigate(['/insert'],{queryParams:{BookId:0,pageType:"Insert"}})
+    
   }
   editBtn(BookId:any){
     this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Edit"}})
@@ -60,8 +64,6 @@ export class BooksComponent implements OnInit {
   deleteBtn(BookId:any){
     this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Delete"}})
   }
-
-
 
 }
 

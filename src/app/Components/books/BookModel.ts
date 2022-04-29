@@ -10,4 +10,5 @@ export class BookModel{
     PageNumber:number=1
     TotalPages:number
     IsActive:boolean=true
+    TotalCount:number
 }
