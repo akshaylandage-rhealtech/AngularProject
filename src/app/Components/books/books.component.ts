@@ -31,10 +31,11 @@ export class BooksComponent implements OnInit {
   selectedLevel: number
   book: BookModel = new BookModel()
   private modalService: NgbModal
-  displayedColumns: string[] = ['BookId', 'BookName', 'BookCategoryName', 'BookPublisherName', 'BookQuantity', 'actions'];
   SelectedCategoryList = new FormControl();
   SelectedPublisherList = new FormControl();
-  
+  displayedColumns: string[] = ['BookId', 'BookName', 'BookCategoryName', 'BookPublisherName', 'BookQuantity', 'actions'];
+
+
   constructor(public BooksService: BooksService, public Router: Router, public matDialogModule: MatDialog) {
 
   }
@@ -54,35 +55,38 @@ export class BooksComponent implements OnInit {
     if (this.SelectedCategoryList.value != null) {
       this.book.multiCategoryStr = this.SelectedCategoryList.value.join(",");
     }
+
     if (this.SelectedPublisherList.value != null) {
       this.book.multiPublisherStr = this.SelectedPublisherList.value.join(",");
     }
+
     this.BooksService.BookGetList(this.book).subscribe((data: any) => {
-      debugger;
       this.BookList = data.list
       this.book.TotalPages = data.booksModel.TotalPages
       this.book.TotalCount = data.booksModel.TotalCount
-      // alert(this.book.TotalCount)
     });
   }
+  
   insertBtn() {
-    // this.Router.navigate(['/insert'],{queryParams:{BookId:0,pageType:"Insert"}})
     const check = this.matDialogModule.open(InsertEditDeleteComponent, {
       data: { BookId: 0, pageType: "Insert" }
     })
+
     check.afterClosed().subscribe(result => {
       this.setData()
     });
   }
+
   editBtn(BookId: any) {
     const check = this.matDialogModule.open(InsertEditDeleteComponent, {
       data: { BookId: BookId, pageType: "Edit" }
     })
+
     check.afterClosed().subscribe(result => {
       this.setData()
     });
-    // this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Edit"}})
   }
+
   deleteBtn(BookId: any) {
     const check = this.matDialogModule.open(InsertEditDeleteComponent, {
       data: { BookId: BookId, pageType: "Delete" }
@@ -90,8 +94,6 @@ export class BooksComponent implements OnInit {
     check.afterClosed().subscribe(result => {
       this.setData()
     });
-    // this.Router.navigate(['/insert'],{queryParams:{BookId:BookId,pageType:"Delete"}})
   }
-
 }
 

@@ -2,10 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookModel } from '../books/BookModel';
 import { BooksService } from '../books/books.service';
-import {Location} from '@angular/common';
-import { inject } from '@angular/core/testing';
+import { Location } from '@angular/common';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BooksComponent } from '../books/books.component';
 @Component({
   selector: 'app-insert-edit-delete',
   templateUrl: './insert-edit-delete.component.html',
@@ -22,23 +20,19 @@ export class InsertEditDeleteComponent implements OnInit {
   PageLength: number
   PageNumber: number
   BookDetails: any
-  // BookCategoryList = [{BookCategory:'Select Category',BookCategoryId:0,isSelected:false}]
-  // BookPublisherList= [{BookPublisher:'Select Publisher',BookPublisherId:0,isSelected:false}]
   BookCategoryList: any
   BookPublisherList: any
-  
+
   book: BookModel = new BookModel()
 
-
-
-  constructor(private route: ActivatedRoute, public BookService: BooksService,private _location: Location,
+  constructor(private route: ActivatedRoute, public BookService: BooksService, private _location: Location,
     @Inject(MAT_DIALOG_DATA) public InsertEditDeleteData: any) {
     this.BookService.GetCategoryAndPublisherList().subscribe((data: any) => {
       this.BookCategoryList = data.list;
       this.BookPublisherList = data.list1;
-      
-      this.book.BookId=+InsertEditDeleteData.BookId
-      this.pageType=InsertEditDeleteData.pageType
+
+      this.book.BookId = +InsertEditDeleteData.BookId
+      this.pageType = InsertEditDeleteData.pageType
 
       this.BookService.LoadBook(this.book.BookId).subscribe((getData: any) => {
         this.book = getData;
@@ -47,68 +41,20 @@ export class InsertEditDeleteComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe((params: any) => {
-      // // this.book=params
-      // this.book.BookId = +params.BookId
-      // // this.book.BookName = params.BookName
-      // // // this.book.BookCategoryId = params.BookCategoryId
-      // // this.book.BookPublisherId = params.BookPublisherId
-      // // this.book.BookQuantity = params.BookQuantity
-      // this.pageType = params.pageType;
-      // this.BookService.LoadBook(this.book.BookId).subscribe((data: any) => {
-      //   this.book = data;
+  ngOnInit(): void { }
 
-      // });
-    })
-    
+  InsertEditDelete() {
 
-    // this.BookService.GetCategoryAndPublisherList().subscribe((data: any) => {
-    //   this.BookCategoryList = data.list;
-    //   this.BookPublisherList=data.list1;
-    // alert(this.book.BookCategoryId)
-    // for (let index = 0; index < data.list.length; index++) {
-    //   if (data.list[index].BookCategoryId==this.book.BookCategoryId) {
-    //     this.BookCategoryList.push({ BookCategory: data.list[index].BookCategory,BookCategoryId: data.list[index].BookCategoryId, isSelected:true })
-    //   } else {
-    //     this.BookCategoryList.push({ BookCategory: data.list[index].BookCategory,BookCategoryId: data.list[index].BookCategoryId, isSelected:false })
-    //   }
-    // }
-    // for (let index = 0; index < data.list1.length; index++) {
-    //   if (data.list[index].BookPublisherId==this.book.BookPublisherId) {
-    //     this.BookPublisherList.push({ BookPublisher: data.list1[index].BookPublisher,BookPublisherId: data.list1[index].BookPublisherId, isSelected:true })
-    //   } else {
-    //     this.BookPublisherList.push({ BookPublisher: data.list1[index].BookPublisher,BookPublisherId: data.list1[index].BookPublisherId, isSelected:false })
-    //   }
-    // }
-
-
-    // });
-    // debugger;
-    // this.elementId=this.route.snapshot.paramMap.get('elementId')
-  }
-  InsertEditDelete(){
-    if (this.pageType==="Edit" || this.pageType==="Insert") {
-  
+    if (this.pageType === "Edit" || this.pageType === "Insert") {
       this.BookService.InsertEditBook(this.book).subscribe((data: any) => {
         this.book = data;
-        // this.BookComponent.setData();
-        // this.backClicked()
       });
     }
-    if (this.pageType==="Delete") {
-     
+
+    if (this.pageType === "Delete") {
       this.BookService.DeleteBook(this.book.BookId).subscribe((data: any) => {
         this.book = data;
-        
-        // this.BookComponent.setData();
-        // this.backClicked()
       });
     }
-    
   }
-  // backClicked() {
-  //   this._location.back();
-  // }
-
 }

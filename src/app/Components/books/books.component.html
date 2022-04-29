@@ -1,45 +1,25 @@
 <form>
-  <!-- <h1>{{flag}}</h1> -->
   <h1 class="my-1" style="width: 100%;text-align: center;">Book List</h1>
-  <div class="container my-3">
+  <div class="container">
     <div class="row child-row">
-      <div class="col-3" style="margin-top: 20px;">
-        <input type="text" placeholder="Book Name" name="Book" class="form-control" [(ngModel)]="book.BookName">
-      </div>
       <div class="col-2">
-        
+
         <mat-form-field>
           <mat-select [formControl]="SelectedCategoryList" multiple class="form-control" placeholder="Select Category">
             <mat-option *ngFor="let item of BookCategoryList" [value]="item.BookCategoryId">
               {{item.BookCategory}}</mat-option>
           </mat-select>
         </mat-form-field>
-        
-        <!-- <select [(ngModel)]="book.BookCategoryId" class="form-control" name="BookCategory">
-          <option value="undefined" selected>Select Category</option>
-          <option *ngFor="let item of BookCategoryList" [ngValue]="item.BookCategoryId">
-            {{item.BookCategory}}
-          </option>
-        </select> -->
-      </div>
-      <div class="col-2">
-        <mat-form-field>
-          <mat-select [formControl]="SelectedPublisherList" multiple class="form-control" placeholder="Select Publisher">
-            <mat-option *ngFor="let item of BookPublisherList" [value]="item.BookPublisherId">
-              {{item.BookPublisher}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <!-- <select [(ngModel)]="book.BookPublisherId" class="form-control" name="BookPublisher">
-          <option value="undefined" selected>Select Publisher</option>
-          <option *ngFor="let item of BookPublisherList" [ngValue]="item.BookPublisherId">
-            {{item.BookPublisher}}
-          </option>
-        </select> -->
       </div>
 
-      <div class="col-3" style="margin-top: 20px;">
-        <button class="btn btn-primary submit" (click)="setData()" style="width: 100%;">Submit</button>
+      <div class="col-6" style="margin-top: 20px;">
+        <input type="text" placeholder="Book Name" name="Book" class="form-control" [(ngModel)]="book.BookName">
       </div>
+
+      <div class="col-2" style="margin-top: 20px;">
+        <button class="btn btn-primary submit" (click)="setData()" style="width: 100%;">Search</button>
+      </div>
+
       <div class="col-2" style="margin-top: 20px;">
         <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize" (ngModelChange)="setData()">
           <option value="10" selected>10 item per page</option>
@@ -48,12 +28,25 @@
         </select>
       </div>
     </div>
-    <div class="row child-row" style="margin-top: 10px;">
-      <div class="col-3"></div>
+
+    <div class="row child-row" style="margin-top: -10px;">
+      <div class="col-3">
+        <mat-form-field>
+          <mat-select [formControl]="SelectedPublisherList" multiple class="form-control"
+            placeholder="Select Publisher">
+            <mat-option *ngFor="let item of BookPublisherList" [value]="item.BookPublisherId">
+              {{item.BookPublisher}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
       <div class="col-2"></div>
+
       <div class="col-2"></div>
+
       <div class="col-3"></div>
-      <div class="col-2">
+
+      <div class="col-2" style="margin-top: 15px;">
         <a (click)="insertBtn()" class="btn btn-primary submit" style="width: 100%;">
           Insert Book
         </a>

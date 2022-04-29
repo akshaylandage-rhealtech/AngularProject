@@ -5,15 +5,18 @@
             <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
                 Book name
             </div>
+
             <div class="col-6">
                 <input type="text" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Name"
                     name="Book" class="form-control" [(ngModel)]="book.BookName">
             </div>
+
         </div>
         <div class="row child-row" style="margin-top: 20px;">
             <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
                 Book Category
             </div>
+
             <div class="col-6">
                 <select [(ngModel)]="book.BookCategoryId" [attr.disabled]="pageType=='Delete' ? false : null" class="form-control" name="BookCategory">
                     <option *ngFor="let item of BookCategoryList" [ngValue]="item.BookCategoryId" [selected]="item.BookCategoryId == book.BookCategoryId">
@@ -26,9 +29,9 @@
             <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
                 Book Publisher
             </div>
+
             <div class="col-6">
                 <select [(ngModel)]="book.BookPublisherId" [attr.disabled]="pageType=='Delete' ? false : null" class="form-control" name="BookPublisher">
-                    
                     <option *ngFor="let item of BookPublisherList" [ngValue]="item.BookPublisherId">
                       {{item.BookPublisher}}
                     </option>
@@ -39,6 +42,7 @@
             <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
                 Book Quantity
             </div>
+
             <div class="col-6">
                 <input type="number" [attr.disabled]="pageType=='Delete' ? false : null" placeholder="Book Quantity"
                     name="Book" class="form-control" [(ngModel)]="book.BookQuantity">
@@ -48,6 +52,7 @@
             <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
                 <button mat-dialog-close class="btn btn-primary submit" style="width: 100%;">Cancel</button>
             </div>
+            
             <div class="col-6" style="text-align: left;height: 100%;padding: 5px;font-weight: bold;">
                 <button (click)="InsertEditDelete()" mat-dialog-close class="btn btn-primary submit" style="width: 100%;">{{pageType}}</button>
             </div>

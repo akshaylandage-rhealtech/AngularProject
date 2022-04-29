@@ -9,32 +9,29 @@ import { catchError, retry } from 'rxjs/operators';
 export class BooksService {
     baseUrl: string = "https://localhost:44320/api/books/";
 
-
-
-    constructor(private http: HttpClient)
-    { }
+    constructor(private http: HttpClient) { }
 
     GetCategoryAndPublisherList() {
         debugger;
         return this.http.get(this.baseUrl + 'BooksGetList');
     }
 
-
     BookGetList(BookModel: any) {
         debugger;
         return this.http.post(this.baseUrl + 'BooksGetList1', BookModel);
-        
     }
-    LoadBook(BookId:any){
+
+    LoadBook(BookId: any) {
         debugger;
-        return this.http.get(this.baseUrl + 'LoadBookDetails?ID='+BookId);
+        return this.http.get(this.baseUrl + 'LoadBookDetails?ID=' + BookId);
     }
-    InsertEditBook(bookModel:any){
+
+    InsertEditBook(bookModel: any) {
         debugger;
-        return this.http.post(this.baseUrl + 'InsertEdit',bookModel);
+        return this.http.post(this.baseUrl + 'InsertEdit', bookModel);
     }
-    DeleteBook(BookId:any){
-        return this.http.get(this.baseUrl + 'DeleteBook?ID='+BookId);
+
+    DeleteBook(BookId: any) {
+        return this.http.get(this.baseUrl + 'DeleteBook?ID=' + BookId);
     }
-    
 }
