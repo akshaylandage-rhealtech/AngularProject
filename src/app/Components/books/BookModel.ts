@@ -11,4 +11,6 @@ export class BookModel{
     TotalPages:number
     IsActive:boolean=true
     TotalCount:number
+    multiCategoryStr:string=""
+    multiPublisherStr:string=""
 }

@@ -3,31 +3,45 @@
   <h1 class="my-1" style="width: 100%;text-align: center;">Book List</h1>
   <div class="container my-3">
     <div class="row child-row">
-      <div class="col-3">
+      <div class="col-3" style="margin-top: 20px;">
         <input type="text" placeholder="Book Name" name="Book" class="form-control" [(ngModel)]="book.BookName">
       </div>
       <div class="col-2">
-        <select [(ngModel)]="book.BookCategoryId" class="form-control" name="BookCategory">
+        
+        <mat-form-field>
+          <mat-select [formControl]="SelectedCategoryList" multiple class="form-control" placeholder="Select Category">
+            <mat-option *ngFor="let item of BookCategoryList" [value]="item.BookCategoryId">
+              {{item.BookCategory}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <!-- <select [(ngModel)]="book.BookCategoryId" class="form-control" name="BookCategory">
           <option value="undefined" selected>Select Category</option>
           <option *ngFor="let item of BookCategoryList" [ngValue]="item.BookCategoryId">
             {{item.BookCategory}}
           </option>
-        </select>
+        </select> -->
       </div>
       <div class="col-2">
-        <select [(ngModel)]="book.BookPublisherId" class="form-control" name="BookPublisher">
+        <mat-form-field>
+          <mat-select [formControl]="SelectedPublisherList" multiple class="form-control" placeholder="Select Publisher">
+            <mat-option *ngFor="let item of BookPublisherList" [value]="item.BookPublisherId">
+              {{item.BookPublisher}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <select [(ngModel)]="book.BookPublisherId" class="form-control" name="BookPublisher">
           <option value="undefined" selected>Select Publisher</option>
           <option *ngFor="let item of BookPublisherList" [ngValue]="item.BookPublisherId">
             {{item.BookPublisher}}
           </option>
-        </select>
+        </select> -->
       </div>
-      
-      <div class="col-3">
+
+      <div class="col-3" style="margin-top: 20px;">
         <button class="btn btn-primary submit" (click)="setData()" style="width: 100%;">Submit</button>
       </div>
-      <div class="col-2">
-        <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize" (ngModelChange)="setData()" >
+      <div class="col-2" style="margin-top: 20px;">
+        <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize" (ngModelChange)="setData()">
           <option value="10" selected>10 item per page</option>
           <option value="5" selected>5 item per page</option>
           <option value="3" selected>3 item per page</option>
@@ -43,12 +57,11 @@
         <a (click)="insertBtn()" class="btn btn-primary submit" style="width: 100%;">
           Insert Book
         </a>
-        
+
       </div>
     </div>
   </div>
 </form>
-
 <div class="container">
   <div class="inner">
     <table mat-table [dataSource]="BookList" class="mat-elevation-z8">
@@ -76,8 +89,8 @@
         <td mat-cell *matCellDef="let element"> {{element.BookQuantity}} </td>
       </ng-container>
       <ng-container matColumnDef="actions">
-        <mat-header-cell  *matHeaderCellDef ></mat-header-cell>
-        <mat-cell *matCellDef="let element" >
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
           <a (click)="editBtn(element.BookId)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
             Edit
           </a>
@@ -91,10 +104,9 @@
     </table>
     <br>
     <div class="pagingDiv">
-      <ngb-pagination [collectionSize]="book.TotalPages*10" [(page)]="book.PageNumber" 
-      [maxSize]="5" [rotate]="true" [ellipses]="false" (pageChange)="setData()"
-      [boundaryLinks]="true"></ngb-pagination>
-    </div> 
+      <ngb-pagination [collectionSize]="book.TotalPages*10" [(page)]="book.PageNumber" [maxSize]="5" [rotate]="true"
+        [ellipses]="false" (pageChange)="setData()" [boundaryLinks]="true"></ngb-pagination>
+    </div>
   </div>
 </div>
 

@@ -21,6 +21,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InsertEditDeleteComponent } from './Components/insert-edit-delete/insert-edit-delete.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select';
+import {ReactiveFormsModule  } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatPaginatorModule,
     NgbModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSelectModule,
+    ReactiveFormsModule
     
   ],
   providers: [

@@ -13,3 +13,12 @@ table {
   .container {
     width:100%
   }
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+/* ::ng-deep .ng-tns-c85-0{
+  display: none;
+} */
+
+
