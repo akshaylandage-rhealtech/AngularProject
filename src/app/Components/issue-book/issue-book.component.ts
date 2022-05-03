@@ -3,15 +3,29 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookModel, IssueBookList, SelectedBooks } from '../books/BookModel';
 import { BooksService } from '../books/books.service';
-import { InsertEditDeleteComponent } from '../insert-edit-delete/insert-edit-delete.component';
 import { IssueBookPopupComponent } from '../issue-book-popup/issue-book-popup.component';
 
-
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+   
+export const MY_DATE_FORMATS = {
+    parse: {
+      dateInput: 'DD/MM/YYYY',
+    },
+    display: {
+      dateInput: 'DD/MM/YYYY',
+      monthYearLabel: 'MMMM YYYY',
+      dateA11yLabel: 'LL',
+      monthYearA11yLabel: 'MMMM YYYY'
+    },
+};
 
 @Component({
   selector: 'app-issue-book',
   templateUrl: './issue-book.component.html',
-  styleUrls: ['./issue-book.component.css']
+  styleUrls: ['./issue-book.component.css'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class IssueBookComponent implements OnInit {
   issueId: number
