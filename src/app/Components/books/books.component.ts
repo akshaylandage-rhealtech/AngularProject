@@ -76,6 +76,15 @@ export class BooksComponent implements OnInit {
       this.setData()
     });
   }
+  IssueBtn() {
+    const check = this.matDialogModule.open(InsertEditDeleteComponent, {
+      data: { BookId: 0, pageType: "Insert" }
+    })
+
+    check.afterClosed().subscribe(result => {
+      this.setData()
+    });
+  }
 
   editBtn(BookId: any) {
     const check = this.matDialogModule.open(InsertEditDeleteComponent, {

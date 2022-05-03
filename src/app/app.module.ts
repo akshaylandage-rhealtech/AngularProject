@@ -22,12 +22,19 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
 import {ReactiveFormsModule  } from "@angular/forms";
-
+import { IssueBookComponent } from './Components/issue-book/issue-book.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldControl } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { IssueBookPopupComponent } from './Components/issue-book-popup/issue-book-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
     BooksComponent,
-    InsertEditDeleteComponent
+    InsertEditDeleteComponent,
+    IssueBookComponent,
+    IssueBookPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,10 @@ import {ReactiveFormsModule  } from "@angular/forms";
     MatDialogModule,
     BrowserAnimationsModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
     
   ],
   providers: [

@@ -12,22 +12,22 @@ export class BooksService {
     constructor(private http: HttpClient) { }
 
     GetCategoryAndPublisherList() {
-        debugger;
+    
         return this.http.get(this.baseUrl + 'BooksGetList');
     }
 
     BookGetList(BookModel: any) {
-        debugger;
+        
         return this.http.post(this.baseUrl + 'BooksGetList1', BookModel);
     }
 
     LoadBook(BookId: any) {
-        debugger;
+       
         return this.http.get(this.baseUrl + 'LoadBookDetails?ID=' + BookId);
     }
 
     InsertEditBook(bookModel: any) {
-        debugger;
+       
         return this.http.post(this.baseUrl + 'InsertEdit', bookModel);
     }
 

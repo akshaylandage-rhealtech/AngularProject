@@ -2,7 +2,7 @@ export class BookModel{
     BookId:number
     BookName:string
     BookCategory:string
-    BookPublisher: boolean
+    BookPublisher: string
     BookPublisherId:number
     BookCategoryId:number
     BookQuantity:number
@@ -13,4 +13,17 @@ export class BookModel{
     TotalCount:number
     multiCategoryStr:string=""
     multiPublisherStr:string=""
+    StudentId:number
+    BookCount:number=1
+}
+
+export class IssueBookList{
+    rows:any=[]
+}
+export class SelectedBooks {
+    BookId:number
+    BookName:string
+    BookCategoryName:string
+    BookPublisherName: string
+    BookCount:number
 }
