@@ -1,8 +1,14 @@
 <h1 class="my-1" style="width: 100%;text-align: center;">Book List</h1>
 <div class="container">
     <div class="row child-row">
+        
         <div class="col-4">
-            <input type="text" style="height: 60px;" placeholder="Student Id" name="Book" class="form-control" [(ngModel)]="book.StudentId">
+            <div class="input-group border" style="border-radius: 50px;padding-right: 10px;">
+                <input style="border-radius: 50px;border-color: white;" type="text" placeholder="Book Name" name="StudentId" placeholder="Student Id"
+                  class="form-control pageBtn" [(ngModel)]="book.StudentId">
+                
+              </div>
+            
         </div>
         <div class="col-4">
             <mat-form-field appearance="fill" style="width: 100%;">
@@ -15,7 +21,7 @@
 
         </div>
         <div class="col-4">
-            <button (click)="issueAddBtn()" class="btn btn-primary submit" style="width: 100%;height: 60px;">Add book</button>
+            <button (click)="issueAddBtn()" class="btn btn-primary submit pageBtn" style="width: 100%;height: 60px;">Add book</button>
         </div>
     </div>
 </div>
@@ -57,10 +63,10 @@
                                     <button type="button" style="margin: 0%;" class="btn btn-primary" (click)="minus(bCount,SelectedList[i].BookId,i)">-</button>                                    
                                     <input [disabled]="true" #bCount [attr.data-bCount]="book.BookCount" [attr.data-bId]="SelectedList[i].BookId" type="text" class="form-control" style="text-align: center;" [value]="SelectedList[i].BookCount">
                                     <button type="button" class="btn btn-primary" (click)="plus(bCount,SelectedList[i].BookId,i)">+</button>
-                                    
+
                                 </div>                               
                             </td>
-                            <td><button class="btn btn-danger" (click)="deleteRow(i)" style='cursor:
+                            <td><button class="btn btn-danger pageBtn" (click)="deleteRow(i)" style='cursor:
                                     pointer;'>Remove</button></td>
                         </tr>
                     </tbody>
