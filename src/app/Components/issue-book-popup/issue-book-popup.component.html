@@ -1,37 +1,42 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+  integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+  integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+  integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+  integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
 <form>
-  <h3 class="my-1" style="width: 100%;text-align: center;">Book List</h3>
   <div class="container">
-    <div class="row child-row">
-      <div class="col-3">
-
-        <mat-form-field style="width: 100%;">
-          <mat-select [formControl]="SelectedCategoryList" multiple class="form-control" placeholder="Select Category">
-            <mat-option *ngFor="let item of BookCategoryList" [value]="item.BookCategoryId">
-              {{item.BookCategory}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-form-field style="width: 100%;">
-          <mat-select [formControl]="SelectedPublisherList" multiple class="form-control"
-            placeholder="Select Publisher">
-            <mat-option *ngFor="let item of BookPublisherList" [value]="item.BookPublisherId">
-              {{item.BookPublisher}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-3" style="margin-top: 20px;">
-        <button class="btn btn-primary submit" (click)="setData()" style="width: 100%;">Search</button>
-      </div>
-
-      <div class="col-3" style="margin-top: 20px;">
-        <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize" (ngModelChange)="setData()">
-          <option value="10" selected>10 item per page</option>
-          <option value="5" selected>5 item per page</option>
-          <option value="3" selected>3 item per page</option>
-        </select>
-      </div>
+  <div class="row child-row">
+    <div class="col-3">
+      <mat-form-field style="width: 100%;">
+        <mat-select [formControl]="SelectedCategoryList" multiple class="form-control" placeholder="Select Category">
+          <mat-option *ngFor="let item of BookCategoryList" [value]="item.BookCategoryId">
+            {{item.BookCategory}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
+    <div class="col-3">
+      <mat-form-field style="width: 100%;">
+        <mat-select [formControl]="SelectedPublisherList" multiple class="form-control" placeholder="Select Publisher">
+          <mat-option *ngFor="let item of BookPublisherList" [value]="item.BookPublisherId">
+            {{item.BookPublisher}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-3" style="margin-top: 20px;">
+      <button class="btn btn-primary submit" (click)="setData()" style="width: 100%;">Search</button>
+    </div>
+
+    <div class="col-3" style="margin-top: 20px;">
+      <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize" (ngModelChange)="setData()">
+        <option value="5" selected>5 item per page</option>
+        <option value="3" selected>3 item per page</option>
+      </select>
+    </div>
+  </div>
   </div>
 </form>
 <div class="container">
@@ -61,12 +66,13 @@
         <td mat-cell *matCellDef="let element"> {{element.BookQuantity}} </td>
       </ng-container>
       <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <a (click)="selectBookBtn(element)" mat-dialog-close class="selectBookBtn" style="margin-left: 10px;margin-right: 10px;color: blue;">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <a (click)="selectBookBtn(element)" mat-dialog-close class="selectBookBtn"
+            style="margin-left: 10px;margin-right: 10px;color: blue;">
             Select
           </a>
-        </mat-cell>
+        </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -75,6 +81,9 @@
     <div class="pagingDiv">
       <ngb-pagination [collectionSize]="book.TotalPages*10" [(page)]="book.PageNumber" [maxSize]="5" [rotate]="true"
         [ellipses]="false" (pageChange)="setData()" [boundaryLinks]="true"></ngb-pagination>
+    </div>
+    <div class="container text-right">
+      <button class="btn btn-primary submit" mat-dialog-close>Close</button>
     </div>
   </div>
 </div>

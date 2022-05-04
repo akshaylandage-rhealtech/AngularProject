@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter, Inject } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class IssueBookPopupComponent implements OnInit {
   BookCategoryId: number
   BookPublisherId: number
   BookQuantity: number
-  PageLength: number
+  PageLength: number = 5
   PageNumber: number
   BookList: any
   BookCategoryList: any
@@ -32,38 +32,37 @@ export class IssueBookPopupComponent implements OnInit {
   SelectedPublisherList = new FormControl();
   displayedColumns: string[] = ['BookId', 'BookName', 'BookCategoryName', 'BookPublisherName', 'BookQuantity', 'actions'];
 
-  @Output() bookid:EventEmitter<number>=new EventEmitter()
-
   // constructor(public BooksService: BooksService, public Router: Router, public matDialogModule: MatDialog) {
 
   // }
-  constructor(public BooksService: BooksService,@Inject(MAT_DIALOG_DATA) public data: string,
-  private dialogRef: MatDialogRef<IssueBookPopupComponent>) {
+  constructor(public BooksService: BooksService, @Inject(MAT_DIALOG_DATA) public data: string,
+    private dialogRef: MatDialogRef<IssueBookPopupComponent>) {
 
   }
 
   ngOnInit(): void {
-    this.dialogRef.disableClose=true
+    this.dialogRef.disableClose = true
+    this.book.PageLength = this.PageLength
     this.BooksService.GetCategoryAndPublisherList().subscribe((data: any) => {
       this.BookCategoryList = data.list;
       this.BookPublisherList = data.list1;
     });
     this.setData()
 
-
-
   }
   setData() {
+    debugger;
     if (this.SelectedCategoryList.value != null) {
       this.book.multiCategoryStr = this.SelectedCategoryList.value.join(",");
-      
+
     }
 
     if (this.SelectedPublisherList.value != null) {
       this.book.multiPublisherStr = this.SelectedPublisherList.value.join(",");
     }
-
+    debugger;
     this.BooksService.BookGetList(this.book).subscribe((data: any) => {
+      debugger
       this.BookList = data.list
       this.book.TotalPages = data.booksModel.TotalPages
       this.book.TotalCount = data.booksModel.TotalCount

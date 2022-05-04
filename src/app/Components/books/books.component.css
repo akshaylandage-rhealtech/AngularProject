@@ -23,3 +23,16 @@ mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-typ
 mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
   padding-left: 0px;
 }
+.mat-focused .mat-form-field-label {
+  color: green !important;
+  font-size: 20px;
+} 
+
+.round{
+  border-radius: 50px;
+}
+
+form .form-control:focus{
+  border-color: #ced4da;
+  box-shadow: none;
+}

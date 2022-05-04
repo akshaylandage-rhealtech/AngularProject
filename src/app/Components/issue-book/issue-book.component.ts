@@ -28,7 +28,7 @@ export const MY_DATE_FORMATS = {
   ]
 })
 export class IssueBookComponent implements OnInit {
-  issueId: number
+  IssueId: number
   book: BookModel = new BookModel()
   issueList: IssueBookList = new IssueBookList()
   minDate: Date;
@@ -37,7 +37,9 @@ export class IssueBookComponent implements OnInit {
 
   // list:SelectedBooks[]
 
-  list: SelectedBooks[] = [];
+  SelectedList: SelectedBooks[] = [];
+
+  RemovedList: SelectedBooks[] = [];
 
   constructor(private route: ActivatedRoute, public BooksService: BooksService, public Router: Router, public matDialogModule: MatDialog) {
     const currentYear = new Date().getFullYear();
@@ -49,20 +51,24 @@ export class IssueBookComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
-      this.issueId = +params['id']
+      this.IssueId = +params['id']
     });
     this.displayedColumns = ['BookId', 'Book Name', 'Book Category', 'Book Publisher', 'Book Quantity'];
   }
+
+  
   issueAddBtn() {
     const check = this.matDialogModule.open(IssueBookPopupComponent, {})
     check.afterClosed().subscribe(result => {
       try {
-
-        this.list.push({
+        if (result.BookId!=null) {
+          this.SelectedList.push({
           BookId: result.BookId, BookName: result.BookName, BookCategoryName: result.BookCategoryName,
           BookPublisherName: result.BookPublisherName, BookCount: 1
         })
-        console.log(this.list)
+        console.log(this.SelectedList)
+        }
+        
       } catch (error) {
 
       }
@@ -71,7 +77,9 @@ export class IssueBookComponent implements OnInit {
 
   deleteRow(index: any) {
     // alert(this.rows[index].name)
-    this.list.splice(index, 1);
+    alert(this.SelectedList[index].BookName)
+    this.SelectedList.splice(index, 1);
+    // alert(this.book.IssueDate)
   }
   submit() {
 
@@ -85,14 +93,14 @@ export class IssueBookComponent implements OnInit {
   minus(e: any, BookID: any, i: any) {
 
     var bCount = e.getAttribute('data-bCount');
-    this.book.BookCount = this.list[i].BookCount - 1
-    this.list[i].BookCount = this.list[i].BookCount - 1
+    this.book.BookCount = this.SelectedList[i].BookCount - 1
+    this.SelectedList[i].BookCount = this.SelectedList[i].BookCount - 1
   }
   plus(e: any, BookID: any, i: any) {
     
     var bCount = e.getAttribute('data-bCount');
-    this.book.BookCount = this.list[i].BookCount + 1
-    this.list[i].BookCount = this.list[i].BookCount + 1
+    this.book.BookCount = this.SelectedList[i].BookCount + 1
+    this.SelectedList[i].BookCount = this.SelectedList[i].BookCount + 1
   }
 
 }

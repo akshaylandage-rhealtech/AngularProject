@@ -15,6 +15,7 @@ export class BookModel{
     multiPublisherStr:string=""
     StudentId:number
     BookCount:number=1
+    IssueDate:Date
 }
 
 export class IssueBookList{

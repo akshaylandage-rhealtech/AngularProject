@@ -3,25 +3,32 @@
   <div class="container">
     <div class="row child-row">
       <div class="col-2">
-
+        
         <mat-form-field>
-          <mat-select [formControl]="SelectedCategoryList" multiple class="form-control" placeholder="Select Category">
+          <mat-select (ngModelChange)="setData(book.BookName)" [formControl]="SelectedCategoryList" multiple
+            class="form-control" placeholder="Select Category">
             <mat-option *ngFor="let item of BookCategoryList" [value]="item.BookCategoryId">
               {{item.BookCategory}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
-      <div class="col-6" style="margin-top: 20px;">
-        <input type="text" placeholder="Book Name" name="Book" class="form-control" [(ngModel)]="book.BookName">
+      <div class="col-8" style="margin-top: 20px;">
+        <div class="input-group border" style="border-radius: 50px;padding-right: 10px;">
+          <input style="border-radius: 50px;border-color: white;" type="text" placeholder="Book Name" name="Book"
+            class="form-control" [(ngModel)]="book.BookName" (ngModelChange)="setData($event)">
+          <i>
+            <img width="25" height="25" style="margin: 10px;"
+              src="https://cdn-icons.flaticon.com/png/128/3031/premium/3031293.png?token=exp=1651670991~hmac=51a0eeb08a9dde3587d5abb4a49a0ab7"
+              alt="">
+          </i>
+        </div>
+
       </div>
 
       <div class="col-2" style="margin-top: 20px;">
-        <button class="btn btn-primary submit" (click)="setData()" style="width: 100%;">Search</button>
-      </div>
-
-      <div class="col-2" style="margin-top: 20px;">
-        <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize" (ngModelChange)="setData()">
+        <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize"
+          (ngModelChange)="setData(book.BookName)">
           <option value="10" selected>10 item per page</option>
           <option value="5" selected>5 item per page</option>
           <option value="3" selected>3 item per page</option>
@@ -33,7 +40,7 @@
       <div class="col-3">
         <mat-form-field>
           <mat-select [formControl]="SelectedPublisherList" multiple class="form-control"
-            placeholder="Select Publisher">
+            (ngModelChange)="setData(book.BookName)" placeholder="Select Publisher">
             <mat-option *ngFor="let item of BookPublisherList" [value]="item.BookPublisherId">
               {{item.BookPublisher}}</mat-option>
           </mat-select>
@@ -45,7 +52,7 @@
       <div class="col-3"></div>
 
       <div class="col-2" style="margin-top: 15px;">
-        <a [routerLink] = "['/issuebook', 1]" class="btn btn-primary submit" style="width: 100%;">
+        <a [routerLink]="['/issuebook', 0]" class="btn btn-primary submit" style="width: 100%;">
           Issue Book
         </a>
 
@@ -103,7 +110,7 @@
     <br>
     <div class="pagingDiv">
       <ngb-pagination [collectionSize]="book.TotalPages*10" [(page)]="book.PageNumber" [maxSize]="5" [rotate]="true"
-        [ellipses]="false" (pageChange)="setData()" [boundaryLinks]="true"></ngb-pagination>
+        [ellipses]="false" (pageChange)="setData(book.BookName)" [boundaryLinks]="true"></ngb-pagination>
     </div>
   </div>
 </div>

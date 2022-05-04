@@ -46,12 +46,13 @@ export class BooksComponent implements OnInit {
       this.BookCategoryList = data.list;
       this.BookPublisherList = data.list1;
     });
-    this.setData()
+    this.setData(this.book.BookName)
 
 
 
   }
-  setData() {
+  setData(bname:any) {
+
     if (this.SelectedCategoryList.value != null) {
       this.book.multiCategoryStr = this.SelectedCategoryList.value.join(",");
     }
@@ -73,16 +74,14 @@ export class BooksComponent implements OnInit {
     })
 
     check.afterClosed().subscribe(result => {
-      this.setData()
+      this.setData(this.book.BookName)
     });
   }
   IssueBtn() {
-    const check = this.matDialogModule.open(InsertEditDeleteComponent, {
-      data: { BookId: 0, pageType: "Insert" }
-    })
+    const check = this.matDialogModule.open(InsertEditDeleteComponent,{})
 
     check.afterClosed().subscribe(result => {
-      this.setData()
+      this.setData(this.book.BookName)
     });
   }
 
@@ -92,7 +91,7 @@ export class BooksComponent implements OnInit {
     })
 
     check.afterClosed().subscribe(result => {
-      this.setData()
+      this.setData(this.book.BookName)
     });
   }
 
@@ -101,7 +100,7 @@ export class BooksComponent implements OnInit {
       data: { BookId: BookId, pageType: "Delete" }
     })
     check.afterClosed().subscribe(result => {
-      this.setData()
+      this.setData(this.book.BookName)
     });
   }
 }
