@@ -1,28 +1,52 @@
 table {
-    width: 100%;
-    align-items: center;
+  width: 100%;
+  align-items: center;
 }
+
 .pagingDiv {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.inner {  
-    margin: 0 auto;
-  }
-  .container {
-    width:100%
-  }
-  ::ng-deep .mat-form-field-underline {
-    display: none;
+
+.inner {
+  margin: 0 auto;
 }
 
-mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+.container {
+  width: 100%
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+mat-cell:last-of-type,
+mat-header-cell:last-of-type,
+mat-footer-cell:last-of-type {
   padding-right: 0px;
 }
-mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+
+mat-cell:first-of-type,
+mat-header-cell:first-of-type,
+mat-footer-cell:first-of-type {
   padding-left: 0px;
 }
-.selectBookBtn:hover{
+
+.selectBookBtn:hover {
   cursor: pointer;
+}
+
+.round {
+  border-radius: 50px;
+}
+
+form .form-control:focus {
+  border-color: #ced4da;
+  box-shadow: none;
+}
+
+mat-select {
+  border-radius: 50px;
+  height: 45px;
 }

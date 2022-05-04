@@ -47,22 +47,20 @@ export class IssueBookPopupComponent implements OnInit {
       this.BookCategoryList = data.list;
       this.BookPublisherList = data.list1;
     });
-    this.setData()
+    this.setData(this.book.BookName)
 
   }
-  setData() {
-    debugger;
+  setData(bname:any) {
+
     if (this.SelectedCategoryList.value != null) {
       this.book.multiCategoryStr = this.SelectedCategoryList.value.join(",");
-
     }
 
     if (this.SelectedPublisherList.value != null) {
       this.book.multiPublisherStr = this.SelectedPublisherList.value.join(",");
     }
-    debugger;
+
     this.BooksService.BookGetList(this.book).subscribe((data: any) => {
-      debugger
       this.BookList = data.list
       this.book.TotalPages = data.booksModel.TotalPages
       this.book.TotalCount = data.booksModel.TotalCount

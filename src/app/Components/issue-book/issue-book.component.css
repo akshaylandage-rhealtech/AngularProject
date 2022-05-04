@@ -1,3 +1,10 @@
 ::ng-deep .mat-form-field-underline {
     display: none;
 }
+.pageBtn{
+    border-radius: 50px;
+  }
+  form .form-control:focus{
+    border-color: #ced4da;
+    box-shadow: none;
+  }

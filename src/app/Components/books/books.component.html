@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row child-row">
       <div class="col-2">
-        
+
         <mat-form-field>
           <mat-select (ngModelChange)="setData(book.BookName)" [formControl]="SelectedCategoryList" multiple
             class="form-control" placeholder="Select Category">
@@ -27,8 +27,8 @@
       </div>
 
       <div class="col-2" style="margin-top: 20px;">
-        <select [(ngModel)]="book.PageLength" class="form-control" name="PageSize"
-          (ngModelChange)="setData(book.BookName)">
+        <select style="border-radius: 50px;height: 45px;" [(ngModel)]="book.PageLength" class="form-control"
+          name="PageSize" (ngModelChange)="setData(book.BookName)">
           <option value="10" selected>10 item per page</option>
           <option value="5" selected>5 item per page</option>
           <option value="3" selected>3 item per page</option>
@@ -52,14 +52,14 @@
       <div class="col-3"></div>
 
       <div class="col-2" style="margin-top: 15px;">
-        <a [routerLink]="['/issuebook', 0]" class="btn btn-primary submit" style="width: 100%;">
+        <a [routerLink]="['/issuebook', 0]" class="btn btn-primary submit pageBtn" style="width: 100%;">
           Issue Book
         </a>
 
       </div>
 
       <div class="col-2" style="margin-top: 15px;">
-        <a (click)="insertBtn()" class="btn btn-primary submit" style="width: 100%;">
+        <a (click)="insertBtn()" class="btn btn-primary submit pageBtn" style="width: 100%;">
           Insert Book
         </a>
 
@@ -94,15 +94,15 @@
         <td mat-cell *matCellDef="let element"> {{element.BookQuantity}} </td>
       </ng-container>
       <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <a (click)="editBtn(element.BookId)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <a (click)="editBtn(element.BookId)" class="btn btn-primary submit pageBtn" style="width: 30%;margin-left: 5px;">
             Edit
           </a>
-          <a (click)="deleteBtn(element.BookId)" class="btn btn-primary submit" style="width: 30%;margin-left: 5px;">
+          <a (click)="deleteBtn(element.BookId)" class="btn btn-primary submit pageBtn" style="width: 30%;margin-left: 5px;">
             Delete
           </a>
-        </mat-cell>
+        </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

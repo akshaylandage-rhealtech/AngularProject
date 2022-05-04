@@ -6,17 +6,17 @@ import { BooksService } from '../books/books.service';
 import { IssueBookPopupComponent } from '../issue-book-popup/issue-book-popup.component';
 
 import { MAT_DATE_FORMATS } from '@angular/material/core';
-   
+
 export const MY_DATE_FORMATS = {
-    parse: {
-      dateInput: 'DD/MM/YYYY',
-    },
-    display: {
-      dateInput: 'DD/MM/YYYY',
-      monthYearLabel: 'MMMM YYYY',
-      dateA11yLabel: 'LL',
-      monthYearA11yLabel: 'MMMM YYYY'
-    },
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  },
 };
 
 @Component({
@@ -56,19 +56,19 @@ export class IssueBookComponent implements OnInit {
     this.displayedColumns = ['BookId', 'Book Name', 'Book Category', 'Book Publisher', 'Book Quantity'];
   }
 
-  
+
   issueAddBtn() {
     const check = this.matDialogModule.open(IssueBookPopupComponent, {})
     check.afterClosed().subscribe(result => {
       try {
-        if (result.BookId!=null) {
+        if (result.BookId != null) {
           this.SelectedList.push({
-          BookId: result.BookId, BookName: result.BookName, BookCategoryName: result.BookCategoryName,
-          BookPublisherName: result.BookPublisherName, BookCount: 1
-        })
-        console.log(this.SelectedList)
+            BookId: result.BookId, BookName: result.BookName, BookCategoryName: result.BookCategoryName,
+            BookPublisherName: result.BookPublisherName, BookCount: 1
+          })
+          console.log(this.SelectedList)
         }
-        
+
       } catch (error) {
 
       }
@@ -77,7 +77,7 @@ export class IssueBookComponent implements OnInit {
 
   deleteRow(index: any) {
     // alert(this.rows[index].name)
-    alert(this.SelectedList[index].BookName)
+
     this.SelectedList.splice(index, 1);
     // alert(this.book.IssueDate)
   }
@@ -93,14 +93,22 @@ export class IssueBookComponent implements OnInit {
   minus(e: any, BookID: any, i: any) {
 
     var bCount = e.getAttribute('data-bCount');
-    this.book.BookCount = this.SelectedList[i].BookCount - 1
-    this.SelectedList[i].BookCount = this.SelectedList[i].BookCount - 1
+    if (bCount > 1) {
+      this.book.BookCount = this.SelectedList[i].BookCount - 1
+      this.SelectedList[i].BookCount = this.SelectedList[i].BookCount - 1
+      console.log(this.book.BookCount)
+    }
+
   }
   plus(e: any, BookID: any, i: any) {
-    
+
     var bCount = e.getAttribute('data-bCount');
-    this.book.BookCount = this.SelectedList[i].BookCount + 1
-    this.SelectedList[i].BookCount = this.SelectedList[i].BookCount + 1
+    if (bCount >= 1) {
+      this.book.BookCount = this.SelectedList[i].BookCount + 1
+      this.SelectedList[i].BookCount = this.SelectedList[i].BookCount + 1
+      console.log(this.book.BookCount)
+    }
+
   }
 
 }
