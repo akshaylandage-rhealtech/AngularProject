@@ -1,15 +1,15 @@
 <h1 class="my-1" style="width: 100%;text-align: center;">Book List</h1>
 <div class="container">
-    <div class="row child-row">
+    <div class="row child-row" style="width: 100%;display:flex;justify-content:center">
 
-        <div class="col-4">
+        <div class="col-2">
             <div class="input-group border" style="border-radius: 50px;padding-right: 10px;">
                 <input style="border-radius: 50px;border-color: white;" type="text" placeholder="Book Name"
                     name="StudentId" placeholder="Student Id" class="form-control pageBtn" [(ngModel)]="book.StudentId">
             </div>
 
         </div>
-        <div class="col-4">
+        <div class="col-2">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepicker]="picker" [(ngModel)]="date">
@@ -19,8 +19,8 @@
             </mat-form-field>
 
         </div>
-        <div class="col-4">
-            <button (click)="issueAddBtn()" class="btn btn-primary submit pageBtn" style="width: 100%;height: 60px;">Add
+        <div class="col-2">
+            <button (click)="issueAddBtn()" class="btn btn-primary submit pageBtn" style="width: 100%;">Add
                 book</button>
         </div>
     </div>
