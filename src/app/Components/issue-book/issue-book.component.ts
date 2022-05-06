@@ -143,7 +143,7 @@ export class IssueBookComponent implements OnInit {
     // this.book.SelectedBooks=this.SelectedList
     // this.book.RemovedList=this.RemovedList
     this.book.IssueDate = this.pipe.transform(this.date, 'yyyy/MM/dd HH:mm:ss');
-    alert(this.book.IssueDate)
+    alert("Book Issued Successfully...")
     this.BooksService.IssueBook(this.SelectedList,this.RemovedList,this.book.IssueId,this.book.StudentId,this.book.IssueDate).subscribe((getData: any) => {
       debugger;
       this.book = getData;
