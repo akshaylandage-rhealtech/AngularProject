@@ -12,7 +12,7 @@ export class BooksService {
     constructor(private http: HttpClient) { }
 
     GetCategoryAndPublisherList() {
-    
+
         return this.http.get(this.baseUrl + 'BooksGetList');
     }
 
@@ -22,16 +22,33 @@ export class BooksService {
     }
 
     LoadBook(BookId: any) {
-       
+
         return this.http.get(this.baseUrl + 'LoadBookDetails?ID=' + BookId);
     }
 
     InsertEditBook(bookModel: any) {
-       
+
         return this.http.post(this.baseUrl + 'InsertEdit', bookModel);
     }
 
     DeleteBook(BookId: any) {
         return this.http.get(this.baseUrl + 'DeleteBook?ID=' + BookId);
     }
+
+    IssueBook(SelectedBookList: any,RemovedList:any,IssueId:any,StudentId:any,IssueDate:any) {
+        debugger;
+       let  model ={
+            IssueId:IssueId,
+            StudentId:StudentId,
+            IssueDate:IssueDate,
+            SelectedBookList : SelectedBookList,
+            IssueBookRemoveList:RemovedList
+        }
+        return this.http.post(this.baseUrl + 'IssueBookList', model);
+    }
+    IssueLoadBook(IssueId: any) {
+
+        return this.http.get(this.baseUrl + 'IssueBookStudent?ID=' + IssueId);
+    }
 }
+

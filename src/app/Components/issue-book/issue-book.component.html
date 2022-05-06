@@ -1,27 +1,27 @@
 <h1 class="my-1" style="width: 100%;text-align: center;">Book List</h1>
 <div class="container">
     <div class="row child-row">
-        
+
         <div class="col-4">
             <div class="input-group border" style="border-radius: 50px;padding-right: 10px;">
-                <input style="border-radius: 50px;border-color: white;" type="text" placeholder="Book Name" name="StudentId" placeholder="Student Id"
-                  class="form-control pageBtn" [(ngModel)]="book.StudentId">
-                
-              </div>
-            
+                <input style="border-radius: 50px;border-color: white;" type="text" placeholder="Book Name"
+                    name="StudentId" placeholder="Student Id" class="form-control pageBtn" [(ngModel)]="book.StudentId">
+            </div>
+
         </div>
         <div class="col-4">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="book.IssueDate">
-                
+                <input matInput [matDatepicker]="picker" [(ngModel)]="date">
+
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
+            </mat-form-field>
 
         </div>
         <div class="col-4">
-            <button (click)="issueAddBtn()" class="btn btn-primary submit pageBtn" style="width: 100%;height: 60px;">Add book</button>
+            <button (click)="issueAddBtn()" class="btn btn-primary submit pageBtn" style="width: 100%;height: 60px;">Add
+                book</button>
         </div>
     </div>
 </div>
@@ -41,36 +41,48 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let row of SelectedList; let i=index;">
-                            
+
                             <td>
                                 {{SelectedList[i].BookId}}
-                               
+
                             </td>
                             <td>
                                 {{SelectedList[i].BookName}}
-                               
+
                             </td>
                             <td>
                                 {{SelectedList[i].BookCategoryName}}
-                                
+
                             </td>
                             <td>
                                 {{SelectedList[i].BookPublisherName}}
-                                
+
                             </td>
                             <td>
                                 <div class="input-group" style="width: 30%;">
-                                    <button type="button" style="margin: 0%;" class="btn btn-primary" (click)="minus(bCount,SelectedList[i].BookId,i)">-</button>                                    
-                                    <input [disabled]="true" #bCount [attr.data-bCount]="book.BookCount" [attr.data-bId]="SelectedList[i].BookId" type="text" class="form-control" style="text-align: center;" [value]="SelectedList[i].BookCount">
-                                    <button type="button" class="btn btn-primary" (click)="plus(bCount,SelectedList[i].BookId,i)">+</button>
+                                    <button type="button" style="margin: 0%;" class="btn btn-primary"
+                                        (click)="minus(bCount,SelectedList[i].BookId,i)">-</button>
+                                    <input [disabled]="true" #bCount [attr.data-bCount]="book.BookCount"
+                                        [attr.data-bId]="SelectedList[i].BookId" type="text" class="form-control"
+                                        style="text-align: center;" [value]="SelectedList[i].BookCount">
+                                    <button type="button" class="btn btn-primary"
+                                        (click)="plus(bCount,SelectedList[i].BookId,i)">+</button>
 
-                                </div>                               
+                                </div>
                             </td>
                             <td><button class="btn btn-danger pageBtn" (click)="deleteRow(i)" style='cursor:
                                     pointer;'>Remove</button></td>
                         </tr>
                     </tbody>
                 </table>
+                <div style="width: 100%;display: flex;justify-content: center;">
+                    <button (click)="cancelBtn()" *ngIf="isShown" class="btn btn-danger pageBtn"
+                        style='cursor:pointer;width: 10%;margin: 20px;'>Cancel</button>
+                    <button (click)="issueBook()" *ngIf="isShown" class="btn btn-danger pageBtn"
+                        style='cursor:pointer;width: 10%;margin: 20px;'>Issue Book</button>
+
+                </div>
+
             </div>
         </div>
     </div>

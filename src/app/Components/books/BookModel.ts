@@ -15,7 +15,13 @@ export class BookModel{
     multiPublisherStr:string=""
     StudentId:number
     BookCount:number=1
-    IssueDate:Date
+    IssueDate:any
+    status:number
+    SelectedBooks:any
+    RemovedList:any
+    BookCategoryName : string 
+    BookPublisherName: string
+    IssueId:number
 }
 
 export class IssueBookList{
@@ -27,4 +33,8 @@ export class SelectedBooks {
     BookCategoryName:string
     BookPublisherName: string
     BookCount:number
+    status:number
+}
+export class RemovedBooks {
+    BookId:number
 }

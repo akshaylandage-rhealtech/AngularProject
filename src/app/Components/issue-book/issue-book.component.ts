@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookModel, IssueBookList, SelectedBooks } from '../books/BookModel';
+import { BookModel, IssueBookList, RemovedBooks, SelectedBooks } from '../books/BookModel';
 import { BooksService } from '../books/books.service';
 import { IssueBookPopupComponent } from '../issue-book-popup/issue-book-popup.component';
 
-import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -24,7 +25,7 @@ export const MY_DATE_FORMATS = {
   templateUrl: './issue-book.component.html',
   styleUrls: ['./issue-book.component.css'],
   providers: [
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ]
 })
 export class IssueBookComponent implements OnInit {
@@ -33,13 +34,16 @@ export class IssueBookComponent implements OnInit {
   issueList: IssueBookList = new IssueBookList()
   minDate: Date;
   maxDate: Date;
+  date:any
   displayedColumns: any
+  isShown: boolean
+  pipe = new DatePipe('en-US')
 
   // list:SelectedBooks[]
 
   SelectedList: SelectedBooks[] = [];
 
-  RemovedList: SelectedBooks[] = [];
+  RemovedList: RemovedBooks[] = [];
 
   constructor(private route: ActivatedRoute, public BooksService: BooksService, public Router: Router, public matDialogModule: MatDialog) {
     const currentYear = new Date().getFullYear();
@@ -49,22 +53,40 @@ export class IssueBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.route.params.subscribe(params => {
-      this.IssueId = +params['id']
+      this.book.IssueId = +params['id']
     });
+
     this.displayedColumns = ['BookId', 'Book Name', 'Book Category', 'Book Publisher', 'Book Quantity'];
+    if (this.book.IssueId>0) {
+      this.BooksService.IssueLoadBook(this.book.IssueId).subscribe((data: any) => {
+      debugger;
+      for (let index = 0; index < data.GetIssueBookList.length; index++) {
+        this.SelectedList.push({
+          BookId: data.GetIssueBookList[index].BookId, BookName: data.GetIssueBookList[index].BookName, BookCategoryName: data.GetIssueBookList[index].BookCategoryName,
+          BookPublisherName: data.GetIssueBookList[index].BookPublisherName, BookCount: data.GetIssueBookList[index].BookCount,status:0
+        })
+
+      }
+      this.book.StudentId=data.StudentId
+      this.date=data.IssueDate
+      this.book.IssueId=data.IssueId
+      console.log(this.SelectedList)
+      this.checkTableLength()
+    });
+    }
   }
 
 
   issueAddBtn() {
     const check = this.matDialogModule.open(IssueBookPopupComponent, {})
+    debugger;
     check.afterClosed().subscribe(result => {
       try {
         if (result.BookId != null) {
           this.SelectedList.push({
             BookId: result.BookId, BookName: result.BookName, BookCategoryName: result.BookCategoryName,
-            BookPublisherName: result.BookPublisherName, BookCount: 1
+            BookPublisherName: result.BookPublisherName, BookCount: 1,status:1
           })
           console.log(this.SelectedList)
         }
@@ -72,24 +94,20 @@ export class IssueBookComponent implements OnInit {
       } catch (error) {
 
       }
+      this.checkTableLength()
     });
+    
   }
 
   deleteRow(index: any) {
     // alert(this.rows[index].name)
-
+    this.RemovedList.push({BookId:this.SelectedList[index].BookId})
     this.SelectedList.splice(index, 1);
+
+    this.checkTableLength()
     // alert(this.book.IssueDate)
   }
-  submit() {
 
-    console.log(this.issueList.rows)
-  }
-  validate(id: any, column: any, event: any) {
-    column.checked = !column.checked;
-    console.log(this.issueList.rows[id].name + " = " + this.issueList.rows[id].checked); // using this value, you can perform logic with tables array.
-
-  }
   minus(e: any, BookID: any, i: any) {
 
     var bCount = e.getAttribute('data-bCount');
@@ -98,7 +116,6 @@ export class IssueBookComponent implements OnInit {
       this.SelectedList[i].BookCount = this.SelectedList[i].BookCount - 1
       console.log(this.book.BookCount)
     }
-
   }
   plus(e: any, BookID: any, i: any) {
 
@@ -110,5 +127,26 @@ export class IssueBookComponent implements OnInit {
     }
 
   }
-
+  checkTableLength(){
+    if (this.SelectedList.length>0) {
+      this.isShown = true;
+    } else {
+      this.isShown = false;
+    }
+  }
+  cancelBtn(){
+    this.SelectedList=[]
+    this.checkTableLength()
+  }
+  issueBook(){
+    debugger;
+    // this.book.SelectedBooks=this.SelectedList
+    // this.book.RemovedList=this.RemovedList
+    this.book.IssueDate = this.pipe.transform(this.date, 'yyyy/MM/dd HH:mm:ss');
+    alert(this.book.IssueDate)
+    this.BooksService.IssueBook(this.SelectedList,this.RemovedList,this.book.IssueId,this.book.StudentId,this.book.IssueDate).subscribe((getData: any) => {
+      debugger;
+      this.book = getData;
+    });
+  }
 }
