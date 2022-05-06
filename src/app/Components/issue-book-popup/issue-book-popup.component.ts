@@ -32,9 +32,6 @@ export class IssueBookPopupComponent implements OnInit {
   SelectedPublisherList = new FormControl();
   displayedColumns: string[] = ['BookId', 'BookName', 'BookCategoryName', 'BookPublisherName', 'BookQuantity', 'actions'];
 
-  // constructor(public BooksService: BooksService, public Router: Router, public matDialogModule: MatDialog) {
-
-  // }
   constructor(public BooksService: BooksService, @Inject(MAT_DIALOG_DATA) public data: string,
     private dialogRef: MatDialogRef<IssueBookPopupComponent>) {
 

@@ -38,9 +38,6 @@ export class IssueBookComponent implements OnInit {
   displayedColumns: any
   isShown: boolean
   pipe = new DatePipe('en-US')
-
-  // list:SelectedBooks[]
-
   SelectedList: SelectedBooks[] = [];
 
   RemovedList: RemovedBooks[] = [];
@@ -100,12 +97,9 @@ export class IssueBookComponent implements OnInit {
   }
 
   deleteRow(index: any) {
-    // alert(this.rows[index].name)
     this.RemovedList.push({BookId:this.SelectedList[index].BookId})
     this.SelectedList.splice(index, 1);
-
     this.checkTableLength()
-    // alert(this.book.IssueDate)
   }
 
   minus(e: any, BookID: any, i: any) {
@@ -140,8 +134,6 @@ export class IssueBookComponent implements OnInit {
   }
   issueBook(){
     debugger;
-    // this.book.SelectedBooks=this.SelectedList
-    // this.book.RemovedList=this.RemovedList
     this.book.IssueDate = this.pipe.transform(this.date, 'yyyy/MM/dd HH:mm:ss');
     alert("Book Issued Successfully...")
     this.BooksService.IssueBook(this.SelectedList,this.RemovedList,this.book.IssueId,this.book.StudentId,this.book.IssueDate).subscribe((getData: any) => {
