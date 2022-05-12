@@ -62,7 +62,7 @@
                                 <div class="input-group" style="width: 30%;">
                                     <button type="button" style="margin: 0%;" class="btn btn-primary"
                                         (click)="minus(bCount,SelectedList[i].BookId,i)">-</button>
-                                    <input [disabled]="true" #bCount [attr.data-bCount]="book.BookCount"
+                                    <input [disabled]="true" #bCount [attr.data-bCount]="SelectedList[i].BookId"
                                         [attr.data-bId]="SelectedList[i].BookId" type="text" class="form-control"
                                         style="text-align: center;" [value]="SelectedList[i].BookCount">
                                     <button type="button" class="btn btn-primary"
